@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enxin.mapper.TSysUserMapper">
+  <resultMap id="BaseResultMap" type="com.enxin.domain.TSysUser">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="LOGIN_USER_NAME" jdbcType="VARCHAR" property="loginUserName" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="PHONE_NO" jdbcType="VARCHAR" property="phoneNo" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="UPDATOR" jdbcType="VARCHAR" property="updator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="RESV_FLD1" jdbcType="VARCHAR" property="resvFld1" />
+    <result column="RESV_FLD2" jdbcType="VARCHAR" property="resvFld2" />
+    <result column="RESV_FLD3" jdbcType="VARCHAR" property="resvFld3" />
+    <result column="IS_ACTIVE" jdbcType="VARCHAR" property="isActive" />
+    <result column="MERCHANT_CODE" jdbcType="VARCHAR" property="merchantCode" />
+    <result column="PASSWORD_HASH" jdbcType="VARCHAR" property="passwordHash" />
+    <result column="SALT" jdbcType="VARCHAR" property="salt" />
+    <result column="ITERATIONS" jdbcType="VARCHAR" property="iterations" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_NAME, LOGIN_USER_NAME, EMAIL, PHONE_NO, CREATOR, UPDATOR, CREATE_TIME, 
+    UPDATE_TIME, RESV_FLD1, RESV_FLD2, RESV_FLD3, IS_ACTIVE, MERCHANT_CODE, PASSWORD_HASH, 
+    SALT, ITERATIONS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_SYS_USER
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_SYS_USER
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.enxin.domain.TSysUser">
+  	<selectKey keyProperty="id" resultType="Long" order="BEFORE">
+       select SEQ_SYS_USER.nextval from dual
+    </selectKey>
+    insert into T_SYS_USER (ID, USER_NAME, LOGIN_USER_NAME, 
+      EMAIL, PHONE_NO, 
+      CREATOR, UPDATOR, CREATE_TIME, 
+      UPDATE_TIME, RESV_FLD1, RESV_FLD2, 
+      RESV_FLD3, IS_ACTIVE, MERCHANT_CODE, 
+      PASSWORD_HASH, SALT, ITERATIONS
+      )
+    values (#{id,jdbcType=DECIMAL}, #{userName,jdbcType=VARCHAR}, #{loginUserName,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{phoneNo,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{updator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{resvFld1,jdbcType=VARCHAR}, #{resvFld2,jdbcType=VARCHAR}, 
+      #{resvFld3,jdbcType=VARCHAR}, #{isActive,jdbcType=VARCHAR}, #{merchantCode,jdbcType=VARCHAR}, 
+      #{passwordHash,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{iterations,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.enxin.domain.TSysUser">
+    insert into T_SYS_USER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="loginUserName != null">
+        LOGIN_USER_NAME,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="phoneNo != null">
+        PHONE_NO,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="updator != null">
+        UPDATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="resvFld1 != null">
+        RESV_FLD1,
+      </if>
+      <if test="resvFld2 != null">
+        RESV_FLD2,
+      </if>
+      <if test="resvFld3 != null">
+        RESV_FLD3,
+      </if>
+      <if test="isActive != null">
+        IS_ACTIVE,
+      </if>
+      <if test="merchantCode != null">
+        MERCHANT_CODE,
+      </if>
+      <if test="passwordHash != null">
+        PASSWORD_HASH,
+      </if>
+      <if test="salt != null">
+        SALT,
+      </if>
+      <if test="iterations != null">
+        ITERATIONS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginUserName != null">
+        #{loginUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updator != null">
+        #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resvFld1 != null">
+        #{resvFld1,jdbcType=VARCHAR},
+      </if>
+      <if test="resvFld2 != null">
+        #{resvFld2,jdbcType=VARCHAR},
+      </if>
+      <if test="resvFld3 != null">
+        #{resvFld3,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCode != null">
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordHash != null">
+        #{passwordHash,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="iterations != null">
+        #{iterations,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.enxin.domain.TSysUser">
+    update T_SYS_USER
+    <set>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginUserName != null">
+        LOGIN_USER_NAME = #{loginUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        PHONE_NO = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updator != null">
+        UPDATOR = #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resvFld1 != null">
+        RESV_FLD1 = #{resvFld1,jdbcType=VARCHAR},
+      </if>
+      <if test="resvFld2 != null">
+        RESV_FLD2 = #{resvFld2,jdbcType=VARCHAR},
+      </if>
+      <if test="resvFld3 != null">
+        RESV_FLD3 = #{resvFld3,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        IS_ACTIVE = #{isActive,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCode != null">
+        MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordHash != null">
+        PASSWORD_HASH = #{passwordHash,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="iterations != null">
+        ITERATIONS = #{iterations,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.enxin.domain.TSysUser">
+    update T_SYS_USER
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      LOGIN_USER_NAME = #{loginUserName,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      PHONE_NO = #{phoneNo,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      UPDATOR = #{updator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      RESV_FLD1 = #{resvFld1,jdbcType=VARCHAR},
+      RESV_FLD2 = #{resvFld2,jdbcType=VARCHAR},
+      RESV_FLD3 = #{resvFld3,jdbcType=VARCHAR},
+      IS_ACTIVE = #{isActive,jdbcType=VARCHAR},
+      MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR},
+      PASSWORD_HASH = #{passwordHash,jdbcType=VARCHAR},
+      SALT = #{salt,jdbcType=VARCHAR},
+      ITERATIONS = #{iterations,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  
+  
+  
+  
+    
+  
+  <select id="getUserList" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+     from T_SYS_USER where 1=1
+    <if test="userName != null">
+        and USER_NAME like '${userName}%'
+    </if> 
+    <if test="loginUserName != null">
+        and LOGIN_USER_NAME like '${loginUserName}%'
+    </if> 
+    <if test="email != null">
+        and EMAIL like '${email}%'
+    </if> 
+    <if test="phoneNo != null">
+        and PHONE_NO like '${phoneNo}%'
+    </if> 
+    <if test="isActive != null">
+        and IS_ACTIVE = #{isActive}
+    </if> 
+    <if test="beginTime != null">
+        and CREATE_TIME &gt;= to_date(#{beginTime},'yyyy-MM-dd')  
+    </if> 
+    <if test="endTime != null">
+        and CREATE_TIME &lt;= to_date(#{endTime},'yyyy-MM-dd')  
+    </if>    
+    order by CREATE_TIME desc
+  </select>
+  
+  <!-- 健康检查 -->
+  <select id="checkHealth" resultType="java.lang.Integer">
+  	select 1 from dual
+  </select>
+  
+  <!-- 根据用户名查询用户 -->
+  <select id="getUserByLoginName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_SYS_USER
+    where LOGIN_USER_NAME = #{loginUserName,jdbcType=VARCHAR}
+  </select>
+</mapper>

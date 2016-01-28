@@ -1,0 +1,24 @@
+# Server settings  
+server:  
+    port:8080  
+    address:localhost
+    
+# DATASOURCE  
+jdbc:  
+    driverClassName: oracle.jdbc.driver.OracleDriver  
+    url: jdbc:oracle:thin:@192.168.192.10:1521:orcl  
+    username: cfca_bfj  
+    password: cfca_bfj      
+
+# MyBatis  
+mybatis:  
+    typeAliasesPackage: com.enxin.domain  
+    mapperLocations: classpath:/mapper/*.xml  
+    configLocation: classpath:/mybatis-config.xml
+    basePackage: com.enxin.mapper  
+  
+# LOGGING  
+logging:  
+    level:  
+       com.ibatis:DEBUG    
+    
